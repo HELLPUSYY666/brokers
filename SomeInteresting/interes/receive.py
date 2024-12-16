@@ -1,4 +1,5 @@
 import pika
+import time
 
 connection = pika.BlockingConnection(pika.ConnectionParameters(host='localhost'))
 channel = connection.channel()
@@ -10,6 +11,8 @@ print(' [*] Waiting for messages. To exit press CTRL+C')
 
 def callback(ch, method, properties, body):
     print(f" [x] Received {body.decode('utf-8')}")
+    time.sleep(body.count('.'))
+    print(f" [x] Done")
 
 
 channel.basic_consume(queue='hello',
