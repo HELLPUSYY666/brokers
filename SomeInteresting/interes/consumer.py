@@ -8,7 +8,8 @@ connection_parameters = ConnectionParameters(
 
 def callback(ch, method, properties, body):
     print(f'Получено сообщение! {body.decode("utf-8")}')
-
+    x = 1/0
+    ch.basic_ack(delivery_tag=method.delivery_tag)
 
 
 def main():
@@ -19,6 +20,7 @@ def main():
             ch.basic_consume(
                 queue='hello',
                 on_message_callback=callback,
+
             )
             print('Жду сообщений!')
             ch.start_consuming()
