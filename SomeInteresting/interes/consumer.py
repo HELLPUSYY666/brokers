@@ -8,7 +8,10 @@ connection_parameters = ConnectionParameters(
 
 def callback(ch, method, properties, body):
     print(f'Получено сообщение! {body.decode("utf-8")}')
-    x = 1/0
+    try:
+        x = 1 / 0
+    except:
+        pass
     ch.basic_ack(delivery_tag=method.delivery_tag)
 
 
