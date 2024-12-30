@@ -6,9 +6,9 @@ connection_parameters = ConnectionParameters(
 )
 
 
-def callback(*args):
-    for arg in args:
-        print(arg, '\n\n')
+def callback(ch, method, properties, body):
+    print(f'Получено сообщение! {body.decode("utf-8")}')
+
 
 
 def main():
